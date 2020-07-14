@@ -852,8 +852,8 @@
             
             messaging.getToken().then((currentToken) => {
                 if (currentToken) {
-                    // sendTokenToServer(currentToken);
-                    // updateUIForPushEnabled(currentToken);
+                    sendTokenToServer(currentToken);
+                    updateUIForPushEnabled(currentToken);
                     console.log(currentToken);
 
                 } else {
