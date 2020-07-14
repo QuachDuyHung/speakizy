@@ -1,0 +1,22 @@
+{
+  "name": "speakizy",
+  "version": "1.0.0",
+  "description": "test firebase push notifications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuachDuyHung/speakizy.git"
+  },
+  "author": "Quach Duy Hung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuachDuyHung/speakizy/issues"
+  },
+  "homepage": "https://github.com/QuachDuyHung/speakizy#readme",
+  "dependencies": {
+    "firebase-admin": "^8.13.0"
+  }
+}
