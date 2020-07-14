@@ -781,50 +781,8 @@
 
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-messaging.js"></script>
-    <!-- <script>
-        // Retrieve Firebase Messaging object.
-        const messaging = firebase.messaging();
-        // Add the public key generated from the console here.
-        messaging.usePublicVapidKey("BMgbKj9a7nevP1gsC2XoWy9Jx5ibXuk9s7H2xQhwsiZaLu7kjDUSLg3CTc5vGjBYS0T-FNGvOY93wjOMDxvxJf0");
-        // Get Instance ID token. Initially this makes a network call, once retrieved
-        // subsequent calls to getToken will return from cache.
-        messaging.getToken().then((currentToken) => {
-        if (currentToken) {
-            sendTokenToServer(currentToken);
-            updateUIForPushEnabled(currentToken);
-        } else {
-            // Show permission request.
-            console.log('No Instance ID token available. Request permission to generate one.');
-            // Show permission UI.
-            updateUIForPushPermissionRequired();
-            setTokenSentToServer(false);
-        }
-        }).catch((err) => {
-        console.log('An error occurred while retrieving token. ', err);
-        showToken('Error retrieving Instance ID token. ', err);
-        setTokenSentToServer(false);
-        });
-        // Callback fired if Instance ID token is updated.
-        messaging.onTokenRefresh(() => {
-        messaging.getToken().then((refreshedToken) => {
-            console.log('Token refreshed.');
-            // Indicate that the new Instance ID token has not yet been sent to the
-            // app server.
-            setTokenSentToServer(false);
-            // Send Instance ID token to app server.
-            sendTokenToServer(refreshedToken);
-            // ...
-        }).catch((err) => {
-            console.log('Unable to retrieve refreshed token ', err);
-            showToken('Unable to retrieve refreshed token ', err);
-        });
-        });
-    </script> -->
 
     <script>
-        // var firebase = require("firebase/app");
-        // require("firebase/auth");
-        // require("firebase/firestore");
         var firebaseConfig = {
             apiKey: "AIzaSyAIH04hIkZ2ybK3QAM9LUqRLynND-oMKdg",
             authDomain: "test-firebase-d2f75.firebaseapp.com",
@@ -837,10 +795,6 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        // firebase.analytics();
-        
-        // firebase.initializeApp({messagingSenderId: "266761263864"});
-        // var messaging = firebase.messaging();
 
         // Retrieve Firebase Messaging object.
         const messaging = firebase.messaging();
@@ -873,10 +827,12 @@
         });
 
         messaging.onMessage(function(payload) {
-            let obj = JSON.parse(payload.data.notification);
-            let notification = new Notification(obj.title, {
-                icon: obj.icon,
-                body: obj.body
+            let notification = new Notification(payload.data.title, {
+                image: payload.data.image,
+                icon: payload.data.icon,
+                body: payload.data.body,
+                click_action: payload.data.click_action,
+                requireInteraction: true,
             });
         });
     </script>
